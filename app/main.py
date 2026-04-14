@@ -19,7 +19,7 @@ def create_streamlit_app(llm, portfolio, clean_text):
             loader = WebBaseLoader([url_input])
             data = clean_text(loader.load().pop().page_content)
             portfolio.load_portfolio()
-            jobs = llm.extractçjobs(data)
+            jobs = llm.extract_jobs(data)
             for job in jobs:
                 skills = job.get('skills', [])
                 links = portfolio.query_links(skills)
@@ -27,7 +27,7 @@ def create_streamlit_app(llm, portfolio, clean_text):
                 st.code(email, language="markdown")
 
         except Exception as e:
-            print("Lala is kind")
+            st.error(f"An error Occurred: {e}")
 
 
 
