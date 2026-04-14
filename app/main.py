@@ -28,3 +28,17 @@ def create_streamlit_app(llm, portfolio, clean_text):
 
         except Exception as e:
             print("Lala is kind")
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    chain = Chain()
+    portfolio = Portfolio()
+    st.set_page_config(layout="wide", page_title="Cold Email Generator", page_icon=":email:")
+    create_streamlit_app(chain, portfolio, clean_text)
