@@ -17,7 +17,14 @@ def create_streamlit_app(llm, portfolio, clean_text):
     if submit_button:
         try:
             loader = WebBaseLoader([url_input])
-            st.code("Hello Hiring Manager, I am from AtliQ", language="markdown")
+            data = clean_text(loader.load().pop().page_content)
+            portfolio.load_portfolio()
+            jobs = llm.extractçjobs(data)
+            for job in jobs:
+                skills = job.get('skills', [])
+                links = portfolio.query_links(skills)
+                email = llm.write_mail(job, links)
+                st.code(email, language="markdown")
 
         except Exception as e:
             print("Lala is kind")
